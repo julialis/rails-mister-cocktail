@@ -1,26 +1,44 @@
 class CocktailsController < ApplicationController
-before_action
+before_action :set_cocktail, only: [:show, :edit]
 
   def index
     @cocktails = Cocktail.all
   end
 
   def show
-
+    @new_dose = @cocktail.doses.build(dose_params)
+    @ingredients = Ingredient.all
   end
 
   def new
+    @cocktail = Cocktail.new
   end
 
   def create
+    @cocktail = Cocktail.new(cocktail_params)
+    if @cocktail.save
+      redirect_to @cocktail
+    else
+      render :new
+    end
+
+  end
+
+  def edit
   end
 
   def update
+    @cocktail = Cocktail.update(cocktail_params)
+    @cocktail.save
   end
 
   private
 
   def set_cocktail
+    @cocktail = Cocktail.find(params[:id])
   end
 
+  def cocktail_params
+    params.require(:cocktail).permit(:name)
+  end
 end

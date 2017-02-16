@@ -1,2 +1,32 @@
-<h1>Cocktails#show</h1>
-<p>Find me in app/views/cocktails/show.html.erb</p>
+<h1><%= @cocktail.name %></h1>
+
+<%= link_to "add a dose", new_cocktail_dose_path(@cocktail), class: "btn btn-primary" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h1> <%= cocktail.name %> </h1>
+      <p>Recette</p>
+      <ul>
+        <li>
+          <h1> <%= cocktail.doses.each do |dose| %>
+            <%= dose.description %>
+            <% end %>
+          </h1>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<%= simple_form_for [@cocktail, @new_dose] do |f| %>
+  <%= f.input :ingredient_id, collection: @ingredients %>
+  <%= f.input :description %>
+  <%= f.submit %>
+<% end %>
+<hr>
+
+<%= link_to("new ingredient", new_cocktail_dose_path, class: "btn btn-danger btn-xs") %>
+
+<%= link_to("see cocktail", @cocktail_path, class: "btn btn-danger btn-xs") %>
+

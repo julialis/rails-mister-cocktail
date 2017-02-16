@@ -1,2 +1,16 @@
-<h1>Cocktails#index</h1>
-<p>Find me in app/views/cocktails/index.html.erb</p>
+<h1>Cocktails' list</h1>
+<p>Let's have a good moment with a good drink!</p>
+<p>N'OUBLIES PAS DE FAIRE TON STYLE !</p>
+
+<%= link_to("add a cocktail", new_cocktail_path, class: "btn btn-danger btn-sm" ) %>
+
+<ul>
+  <% @cocktails.each do |cocktail| %>
+    <li>
+      <p>
+      <%= cocktail.name %>
+      <%= link_to("see more", cocktail_path(cocktail), class: "btn btn-danger btn-xs" ) %>
+      </p>
+    </li>
+  <% end %>
+</ul>
