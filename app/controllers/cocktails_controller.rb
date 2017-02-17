@@ -1,20 +1,22 @@
 class CocktailsController < ApplicationController
-before_action :set_cocktail, only: [:show, :edit]
-
+  # GET /cocktails
   def index
     @cocktails = Cocktail.all
   end
 
+  # GET /cocktails/1
   def show
-    @new_dose = @cocktail.doses.build(dose_params)
+    @cocktail = Cocktail.find(params[:id])
     @new_dose = Dose.new
     @ingredients = Ingredient.all
   end
 
+  # GET /cocktails/new
   def new
     @cocktail = Cocktail.new
   end
 
+  # POST /cocktails
   def create
     @cocktail = Cocktail.new(cocktail_params)
     if @cocktail.save
@@ -24,20 +26,9 @@ before_action :set_cocktail, only: [:show, :edit]
     end
   end
 
-  def edit
-  end
-
-  def update
-    @cocktail = Cocktail.update(cocktail_params)
-    @cocktail.save
-  end
-
   private
 
-  def set_cocktail
-    @cocktail = Cocktail.find(params[:id])
-  end
-
+  # Never trust parameters from the scary internet, only allow the white list through.
   def cocktail_params
     params.require(:cocktail).permit(:name)
   end
