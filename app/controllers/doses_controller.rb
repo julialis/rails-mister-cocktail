@@ -8,16 +8,15 @@ before_action :set_cocktail
   end
 
   def create
-    @dose = @cocktail.doses.build(dose_params)
+    @new_dose = Dose.new(dose_params)
+    @new_dose.cocktail = @cocktail
     @ingredients = Ingredient.all
-    if @dose.save
-      redirect_to @cocktail
+    if @new_dose.save
+      redirect_to cocktail_path(@cocktail)
     else
-      render :new
+      render 'cocktails/show'
     end
   end
-  #     redirect_to :new
-  #   end
 
   private
 

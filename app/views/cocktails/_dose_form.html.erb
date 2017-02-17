@@ -1,10 +1,5 @@
-
 <%= simple_form_for [@cocktail, @new_dose] do |f| %>
   <%= f.input :ingredient_id, collection: @ingredients %>
   <%= f.input :description %>
   <%= f.submit %>
 <% end %>
-
-<%= link_to("cocktails' list", cocktails_path, class: "btn btn-danger btn-sm") %>
-
-<%= link_to("review cocktail", @cocktail_path, class: "btn btn-danger btn-sm") %>
