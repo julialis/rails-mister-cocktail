@@ -8,12 +8,15 @@
   <div class="row">
     <% @cocktails.each do |cocktail| %>
       <div class="col-xs-12 col-sm-4">
-        <div class="card text-center">
-          <div class="card-body">
-            <%= link_to cocktail.name, cocktail_path(cocktail) %>
+        <div class="card" style= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path("gahwzewruz5m24fhtfon.jpg", :effect=>"pixelate_faces:5", :quality=>72, :radius=>5, :width=>200, :crop=>"scale") %>')" >
+            <div class="card text-center">
+              <div class="card-body">
+                <%= link_to cocktail.name, cocktail_path(cocktail) %>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
     <% end %>
   </div>
 </div>
